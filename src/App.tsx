@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import SplitScreen from 'layout/split-screen'
 
+const LeftHandComponent = ({ leftHandProp }: { leftHandProp: string }) => {
+    return (
+        <h1 style={{ backgroundColor: 'pink' }}>{`Left & ${leftHandProp}`}</h1>
+    )
+}
+const RightHandComponent = ({ rightHandProp }: { rightHandProp: string }) => {
+    return (
+        <h1
+            style={{ backgroundColor: 'whitesmoke' }}
+        >{`Right & ${rightHandProp}`}</h1>
+    )
+}
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        // components as props
+        // <SplitScreen
+        //     left={LeftHandComponent}
+        //     right={RightHandComponent}
+        //     leftWeight={1}
+        //     rightWeight={3}
+        // />
+        <SplitScreen leftWeight={1} rightWeight={3}>
+            {/* using children */}
+            <LeftHandComponent leftHandProp={'left side prop'} />
+            <RightHandComponent rightHandProp={'right side prop'} />
+        </SplitScreen>
+    )
 }
 
-export default App;
+export default App
