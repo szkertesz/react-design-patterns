@@ -1,10 +1,8 @@
+import { useState } from 'react'
 import LargePersonListItem from 'ui/list-items/people/large-person-list-item'
-import SmallPersonListItem from 'ui/list-items/people/small-person-list-item'
-import LargeProductListItem from 'ui/list-items/products/large-product-list-item'
-import SmallProductListItem from 'ui/list-items/products/small-product-list-item'
 import NumberedList from 'ui/lists/numbered-list'
-import RegularList from 'ui/lists/regular-list'
-import Modal from 'ui/modals/modal'
+import ControlledModal from 'ui/modals/controlled-modal'
+import UncontrolledModal from 'ui/modals/uncontrolled-modal'
 import './App.css'
 
 const people = [
@@ -28,52 +26,30 @@ const people = [
     },
 ]
 
-const products = [
-    {
-        name: 'Flat-Screen TV',
-        price: '$300',
-        description: 'Huge LCD screen, a great deal',
-        rating: 4.5,
-    },
-    {
-        name: 'Basketball',
-        price: '$10',
-        description: 'Just like the pros use',
-        rating: 3.8,
-    },
-    {
-        name: 'Running Shoes',
-        price: '$120',
-        description: 'State-of-the-art technology for optimum running',
-        rating: 4.2,
-    },
-]
-
 function App() {
+    const [showModal, setShowModal] = useState(false)
     return (
         <>
-            <RegularList
-                items={people}
-                resourceName="person"
-                itemComponent={SmallPersonListItem}
-            />
-            <Modal>
+            <UncontrolledModal>
                 <NumberedList
                     items={people}
                     resourceName="person"
                     itemComponent={LargePersonListItem}
                 />
-            </Modal>
-            <RegularList
-                items={products}
-                resourceName="product"
-                itemComponent={SmallProductListItem}
-            />
-            <RegularList
-                items={products}
-                resourceName="product"
-                itemComponent={LargeProductListItem}
-            />
+            </UncontrolledModal>
+            <button onClick={() => setShowModal(!showModal)}>
+                {showModal ? 'Hide controlled modal' : 'Show controlled modal'}
+            </button>
+            <ControlledModal
+                show={showModal}
+                onRequestClose={() => setShowModal(false)}
+            >
+                <NumberedList
+                    items={people}
+                    resourceName="person"
+                    itemComponent={LargePersonListItem}
+                />
+            </ControlledModal>
         </>
     )
 }

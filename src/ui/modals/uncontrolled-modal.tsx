@@ -19,7 +19,7 @@ const ModalBody = styled.div`
     width: 50%;
 `
 
-function Modal({ children }: { children: React.ReactNode }) {
+function UncontrolledModal({ children }: { children: React.ReactNode }) {
     const [show, setShow] = useState(false)
     return (
         <>
@@ -36,4 +36,4 @@ function Modal({ children }: { children: React.ReactNode }) {
     )
 }
 
-export default Modal
+export default UncontrolledModal

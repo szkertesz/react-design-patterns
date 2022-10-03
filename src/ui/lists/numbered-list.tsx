@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid'
 import { IList } from './list.interface'
 
 function NumberedList({
@@ -9,8 +10,11 @@ function NumberedList({
         <>
             {items.map((item, i) => (
                 <>
-                    <span>{i + 1}.</span>
-                    <ItemComponent key={i} {...{ [resourceName]: item }} />
+                    <span key={nanoid()}>{i + 1}.</span>
+                    <ItemComponent
+                        key={nanoid() + i}
+                        {...{ [resourceName]: item }}
+                    />
                 </>
             ))}
         </>
