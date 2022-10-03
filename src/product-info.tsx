@@ -1,5 +1,7 @@
-export const ProductInfo = ({ product }) => {
-    const { name, price, description, rating } = product
+import { IProduct } from 'product.interface'
+
+export const ProductInfo = ({ product }: { product: IProduct | null }) => {
+    const { name, price, description, rating } = (product as IProduct) || {}
 
     return (
         <>
