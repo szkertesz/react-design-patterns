@@ -1,7 +1,8 @@
+import UncontrolledForm from 'uncontrolled-form'
 import './App.css'
 
 function App() {
-    return <p></p>
+    return <UncontrolledForm />
 }
 
 export default App
