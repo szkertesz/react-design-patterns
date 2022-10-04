@@ -7,17 +7,14 @@ function NumberedList({
     itemComponent: ItemComponent,
 }: IList) {
     return (
-        <>
+        <ol>
             {items.map((item, i) => (
-                <>
-                    <span key={nanoid()}>{i + 1}.</span>
-                    <ItemComponent
-                        key={nanoid() + i}
-                        {...{ [resourceName]: item }}
-                    />
-                </>
+                <li key={nanoid()}>
+                    <span>{i + 1}.</span>
+                    <ItemComponent {...{ [resourceName]: item }} />
+                </li>
             ))}
-        </>
+        </ol>
     )
 }
 
