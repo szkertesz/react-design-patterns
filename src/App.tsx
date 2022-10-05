@@ -7,6 +7,11 @@ import { ProductInfo } from 'product-info'
 import { IProduct } from 'product.interface'
 import { IUser } from 'user.interface'
 import './App.css'
+import { CurrentUserInfoWithHook } from 'current-user-info-with-hook'
+import { UserInfoWithHook } from 'user-info-with-hook'
+import { ProductInfoWithUseResourceHook } from 'product-info-with-use-resource-hook'
+import { UserInfoWithUseResourceHook } from 'user-info-with-use-resource-hook'
+import { UserInfoWithUseDataSourceHook } from 'user-info-with-use-data-source-hook'
 
 const getServerData = (url: string) => async () => {
     const response = await axios.get(url)
@@ -23,7 +28,7 @@ function App() {
     return (
         <>
             {/* Components for UserLoader based configuration */}
-            <UserLoader userId="234">
+            {/* <UserLoader userId="234">
                 <UserInfo user={null} />
             </UserLoader>
             <UserLoader userId="123">
@@ -31,18 +36,18 @@ function App() {
             </UserLoader>
             <UserLoader userId="345">
                 <UserInfo user={null} />
-            </UserLoader>
+            </UserLoader> */}
 
             {/* Components for ResourceLoader based configuration */}
-            <ResourceLoader resourceUrl="/users/234" resourceName="user">
+            {/* <ResourceLoader resourceUrl="/users/234" resourceName="user">
                 <UserInfo user={null} />
             </ResourceLoader>
             <ResourceLoader resourceUrl="/products/1234" resourceName="product">
                 <ProductInfo product={null} />
-            </ResourceLoader>
+            </ResourceLoader> */}
 
             {/* Components for DataSource based configuration */}
-            <DataSource
+            {/* <DataSource
                 getDataFunc={getServerData('/users/234')}
                 resourceName="user"
             >
@@ -54,7 +59,18 @@ function App() {
                 resourceName="message"
             >
                 <Text message={''} />
-            </DataSource>
+            </DataSource> */}
+            <h2>CurrentUserInfoWithHook</h2>
+            <CurrentUserInfoWithHook />
+            <h2>UserInfoWithHook</h2>
+            <UserInfoWithHook userId="123" />
+            <UserInfoWithHook userId="234" />
+            <UserInfoWithHook userId="345" />
+            <h2>User- & ProductInfoWithUseResourceHook</h2>
+            <UserInfoWithUseResourceHook userId="345" />
+            <ProductInfoWithUseResourceHook productId="2345" />
+            <h2>UserInfoWithUseDataSourceHook</h2>
+            <UserInfoWithUseDataSourceHook userId="345" />
         </>
     )
 }
